@@ -10,6 +10,5 @@ export default async () => {
 
     await mongoose.connect(mongo.uri);
 
-    console.log('Mongo connection established');
     sendLog('info', 'Mongo connection established', true);
 };

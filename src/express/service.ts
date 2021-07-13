@@ -1,32 +1,40 @@
 import mergedObj from '../types/mergedObject';
 import * as repo from './repository';
 import { sendToSelectorQueue } from '../rabbit';
+import runTypes from '../config/runTypes';
 
-const sendRecordsToSelector = (mergedObjects: mergedObj[]) => {
+const sendRecordsToQueue = (mergedObjects: mergedObj[]) => {
     mergedObjects.forEach((obj) => {
         sendToSelectorQueue(obj);
     });
 };
-export const getAll = async (): Promise<number> => {
+
+const handleRecordsByRunType = (records: mergedObj[], runType: runTypes): number | mergedObj[] => {
+    if (runType === runTypes.recovery) {
+        sendRecordsToQueue(records);
+        return records.length;
+    }
+    return records;
+};
+
+export const all = async (runType: runTypes): Promise<number | mergedObj[]> => {
     const allRecords = await repo.getAll();
-    sendRecordsToSelector(allRecords);
-    return allRecords.length;
+    return handleRecordsByRunType(allRecords, runType);
 };
 
-export const getBySource = async (source: string): Promise<number> => {
-    const res = (await repo.getBySource(source)).filter((obj) => obj[source].length > 0);
-    sendRecordsToSelector(res);
-    return res.length;
+export const bySource = async (source: string, runType: runTypes): Promise<number | mergedObj[]> => {
+    const records = (await repo.getBySource(source)).filter((obj) => obj[source].length > 0);
+    return handleRecordsByRunType(records, runType);
 };
 
-export const getByIdentifier = async (identifier: string): Promise<mergedObj> => {
+export const byIdentifier = async (identifier: string): Promise<mergedObj> => {
     const entity = await repo.getByIdentifier(identifier);
-    sendRecordsToSelector([entity]);
+    sendRecordsToQueue([entity]);
     return entity;
 };
 
-export const getUpdatedAfter = async (dateMS: string): Promise<number> => {
-    const res = await repo.getUpdatedAfter(new Date(dateMS));
-    sendRecordsToSelector(Array.isArray(res) ? res : [res]);
-    return Array.isArray(res) ? res.length : 1;
+export const updatedAfter = async (dateMS: string, runType: runTypes): Promise<number | mergedObj[]> => {
+    let records = await repo.getUpdatedAfter(new Date(dateMS));
+    records = Array.isArray(records) ? records : [records];
+    return handleRecordsByRunType(records, runType);
 };
