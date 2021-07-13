@@ -1,16 +1,43 @@
-import { Router } from 'express';
-import featureRouter from './feature/router';
+import * as express from 'express';
+import { Request, Response } from 'express';
+import * as service from './service';
 
-const appRouter = Router();
+const router = express.Router();
 
-appRouter.use('/api', featureRouter);
-
-appRouter.use('/isAlive', (_req, res) => {
-    res.status(200).send('alive');
+router.post('', async (_req: Request, res: Response): Promise<void> => {
+    try {
+        // Send the amount of records
+        res.send(await service.getAll());
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });
 
-appRouter.use('*', (_req, res) => {
-    res.status(404).send('Invalid Route');
+router.post('/entity/:identifier', async (req: Request, res: Response): Promise<void> => {
+    try {
+        // Send the entity
+        res.send(await service.getByIdentifier(req.params.identifier));
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });
 
-export default appRouter;
+router.post('/source/:source', async (req: Request, res: Response): Promise<void> => {
+    try {
+        // Send the amount of records
+        res.send(await service.getBySource(req.params.source));
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+router.post('/date/:dateMS', async (req: Request, res: Response): Promise<void> => {
+    try {
+        // Send the amount of records
+        res.send(await service.getUpdatedAfter(req.params.dateMS));
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+export default router;
