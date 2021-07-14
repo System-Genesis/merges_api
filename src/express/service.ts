@@ -10,7 +10,7 @@ const sendRecordsToQueue = (mergedObjects: mergedObj[]) => {
 };
 
 const handleRecordsByRunType = (records: mergedObj[], runType: RUN_TYPES): number | mergedObj[] => {
-    if (runType === RUN_TYPES.recovery) {
+    if (runType === RUN_TYPES.get) {
         sendRecordsToQueue(records);
         return records.length;
     }
@@ -29,7 +29,7 @@ export const bySource = async (source: string, runType: RUN_TYPES): Promise<numb
 
 export const byIdentifier = async (identifier: string, runType: RUN_TYPES): Promise<mergedObj> => {
     const entity = await repo.getByIdentifier(identifier);
-    if (runType === RUN_TYPES.recovery) sendRecordsToQueue([entity]);
+    if (runType === RUN_TYPES.get) sendRecordsToQueue([entity]);
     return entity;
 };
 
