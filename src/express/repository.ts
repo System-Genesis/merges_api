@@ -6,7 +6,9 @@ export const getAll = async (): Promise<mergedObj[]> => {
 };
 
 export const getBySource = async (source: string): Promise<mergedObj[]> => {
-    return await mergedObjModel.find({}).exists(source).ne(null);
+    const query = {};
+    query[source] = { $exists: true };
+    return await mergedObjModel.find(query);
 };
 
 export const getByIdentifier = async (identifier: string): Promise<mergedObj> => {
