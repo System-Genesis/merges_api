@@ -11,7 +11,7 @@ export const getBySource = async (source: string): Promise<mergedObj[]> => {
 
 export const getByIdentifier = async (identifier: string): Promise<mergedObj> => {
     return await model.findOne({
-        $or: [{ 'identifier.identityCard': identifier }, { 'identifier.personalNumber': identifier }, { 'identifier.goalUserId': identifier }],
+        $or: [{ 'identifiers.identityCard': identifier }, { 'identifiers.personalNumber': identifier }, { 'identifiers.goalUserId': identifier }],
     });
 };
 

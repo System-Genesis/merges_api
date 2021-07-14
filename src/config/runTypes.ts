@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
-enum runTypes {
+enum RUN_TYPES {
     recovery = 'recovery',
     get = 'get',
 }
 
-export default runTypes;
+export default RUN_TYPES;

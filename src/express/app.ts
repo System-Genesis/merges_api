@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import sendLog from '../logger';
-import runRouter from './routes/run';
+import runRouter from './routes/recovery';
 import getRouter from './routes/get';
 import config from '../config/index';
 
@@ -15,7 +15,7 @@ export default () => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
 
-    app.use('/run', runRouter);
+    app.use('/recovery', runRouter);
     app.use('/get', getRouter);
 
     app.listen(port, () => {
