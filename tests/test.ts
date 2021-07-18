@@ -1,5 +1,3 @@
-import * as service from '../src/express/service';
-
 jest.mock('../src/logger', () => {
     return {
         default: jest.fn(),
