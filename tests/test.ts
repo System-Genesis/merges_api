@@ -58,7 +58,7 @@ afterAll(async () => {
 describe('Test retrieve', () => {
     test('All', async () => {
         const arr: mergedObj[] = await getService.getAll();
-        expect(arr.length).toEqual(2);
+        expect(arr).toEqual([obj1, obj2]);
     });
 
     test('By identifier', async () => {
@@ -71,14 +71,14 @@ describe('Test retrieve', () => {
     test('By source', async () => {
         const fromAka: mergedObj[] = await getService.getBySource('aka');
         const fromEs: mergedObj[] = await getService.getBySource('es_name');
-        expect(fromAka.length).toEqual(2);
-        expect(fromEs.length).toEqual(1);
-        expect(fromEs[0]).toEqual(obj1);
+        const fromSf: mergedObj[] = await getService.getBySource('sf_name');
+        expect(fromAka).toEqual([obj1, obj2]);
+        expect(fromEs).toEqual([obj1]);
+        expect(fromSf).toEqual([]);
     });
 
     test('By date -> updated after', async () => {
-        const pulledObj: mergedObj[] = await getService.getUpdatedAfter((new Date().getTime() - 7500).toString());
-        expect(pulledObj.length).toEqual(1);
-        expect(pulledObj[0]).toEqual(obj2);
+        const arr: mergedObj[] = await getService.getUpdatedAfter((new Date().getTime() - 7500).toString());
+        expect(arr).toEqual([obj2]);
     });
 });
