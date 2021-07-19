@@ -23,7 +23,7 @@ export default (level: string, message: string, localLog: boolean, extraFields?:
         level,
         message,
         system: 'Traking',
-        service: 'Recovery',
+        service: 'Merges API',
     };
 
     if (extraFields) {
