@@ -9,4 +9,4 @@ COPY . .
 RUN npm run build
 CMD [ "npm", "start" ]
 
-EXPOSE 9000
+EXPOSE 6060
