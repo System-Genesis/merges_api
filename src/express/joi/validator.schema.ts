@@ -3,8 +3,6 @@ import SOURCES from '../../config/sources';
 
 // /date/:dateMS
 export const updatedAfterSchema = Joi.object({
-    query: {},
-    body: {},
     params: {
         dateMS: Joi.date(),
     },
@@ -12,8 +10,6 @@ export const updatedAfterSchema = Joi.object({
 
 // /source/:source
 export const sourceSchema = Joi.object({
-    body: {},
-    query: {},
     params: {
         source: Joi.string().valid(...SOURCES),
     },

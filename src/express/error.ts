@@ -2,7 +2,7 @@ import * as express from 'express';
 import sendLog from '../logger';
 
 export class ServiceError extends Error {
-    public code;
+    public code: number;
 
     constructor(code: number, message: string) {
         super(message);

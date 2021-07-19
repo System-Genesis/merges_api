@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node --async-stack-traces ./dist/index.js",
     "dev": "npm run build && npm start",
-    "test": "jest --coverage",
+    "test": "jest --coverage --detectOpenHandles",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "lint": "eslint . --ext .ts",

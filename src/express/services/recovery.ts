@@ -27,8 +27,7 @@ export const byIdentifier = async (identifier: string): Promise<mergedObj> => {
 };
 
 export const updatedAfter = async (dateMS: string): Promise<number> => {
-    let records = await repo.getUpdatedAfter(new Date(dateMS));
-    records = Array.isArray(records) ? records : [records];
+    const records = await repo.getUpdatedAfter(new Date(dateMS));
     sendRecordsToQueue(records);
     return records.length;
 };
