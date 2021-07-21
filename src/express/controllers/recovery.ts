@@ -6,7 +6,7 @@ export const recoveryAll = async (_req: Request, res: Response): Promise<void> =
 };
 
 export const recoveryByIdentifier = async (req: Request, res: Response): Promise<void> => {
-    res.json(await service.byIdentifier(req.params.identifier));
+    res.send(await service.byIdentifier(req.params.identifier));
 };
 
 export const recoveryBySource = async (req: Request, res: Response): Promise<void> => {
