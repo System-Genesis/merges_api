@@ -4,7 +4,7 @@ import SOURCES from '../../config/sources';
 // /date/:dateMS
 export const updatedAfterSchema = Joi.object({
     params: {
-        dateMS: Joi.date(),
+        dateMS: Joi.number().max(new Date().getTime()),
     },
 });
 

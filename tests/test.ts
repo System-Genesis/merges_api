@@ -51,7 +51,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-    await mergedObjModel.deleteMany({});
+    // await mergedObjModel.deleteMany({});
     await mongoose.connection.close();
 });
 
