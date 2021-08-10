@@ -11,11 +11,11 @@ const mergedObject = new mongoose.Schema<mergedObjectType>(
     {
         _id: { type: mongoose.Schema.Types.ObjectId, required: false, auto: true, select: false },
         aka: { type: [], require: false, default: undefined },
-        es_name: { type: [], require: false, default: undefined },
-        sf_name: { type: [], require: false, default: undefined },
-        city_name: { type: [], require: false, default: undefined },
-        adNN_name: { type: [], require: false, default: undefined },
-        mir_name: { type: [], require: false, default: undefined },
+        es: { type: [], require: false, default: undefined },
+        sf: { type: [], require: false, default: undefined },
+        city: { type: [], require: false, default: undefined },
+        adnn: { type: [], require: false, default: undefined },
+        mir: { type: [], require: false, default: undefined },
 
         identifiers: {
             type: {
