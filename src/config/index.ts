@@ -7,7 +7,6 @@ const config = {
     },
     mongo: {
         uri: env.get('MONGO_URI').required().asUrlString(),
-        collectionName: env.get('COLLECTION_NAME').required().asString(),
     },
     rabbit: {
         uri: env.get('RABBIT_URI').required().asUrlString(),
