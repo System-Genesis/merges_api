@@ -34,5 +34,6 @@ module.exports = {
             },
         ],
         'no-unused-vars': 'off', // Checked by typescript
+        'no-return-await': 'off',
     },
 };

@@ -1,0 +1,19 @@
+/* eslint-disable camelcase */
+type mergedObject = {
+    aka?: any[];
+    es_name?: any[];
+    sf_name?: any[];
+    city_name?: any[];
+    adNN_name?: any[];
+    mir_name?: any[];
+
+    identifiers: {
+        personalNumber?: string;
+        identityCard?: string;
+        goalUser?: string;
+    };
+
+    updatedAt: Date;
+};
+
+export default mergedObject;

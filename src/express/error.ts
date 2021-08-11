@@ -1,7 +1,8 @@
 import * as express from 'express';
+import sendLog from '../logger';
 
 export class ServiceError extends Error {
-    public code;
+    public code: number;
 
     constructor(code: number, message: string) {
         super(message);
@@ -27,7 +28,10 @@ export const errorMiddleware = (error: Error, _req: express.Request, res: expres
         });
     }
 
-    // TODO: add some logging
+    sendLog('error', 'Unknown error', false, {
+        type: error.name,
+        msg: error.message,
+    });
 
     next();
 };

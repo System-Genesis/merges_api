@@ -1,6 +1,6 @@
 import { Request } from 'express';
 import * as Joi from 'joi';
-import { wrapValidator } from './express';
+import { wrapValidator } from '../wraps';
 
 const defaultValidationOptions: Joi.ValidationOptions = {
     abortEarly: false,
@@ -19,7 +19,7 @@ const normalizeRequest = (req: any, value: any) => {
     req.params = value.params;
 };
 
-const ValidateRequest = (schema: Joi.ObjectSchema<any>, options: Joi.ValidationOptions = defaultValidationOptions) => {
+const validateRequest = (schema: Joi.ObjectSchema<any>, options: Joi.ValidationOptions = defaultValidationOptions) => {
     const validator = async (req: Request) => {
         const { error, value } = schema.unknown().validate(req, options);
         if (error) {
@@ -34,4 +34,4 @@ const ValidateRequest = (schema: Joi.ObjectSchema<any>, options: Joi.ValidationO
     return wrapValidator(validator);
 };
 
-export default ValidateRequest;
+export default validateRequest;
