@@ -25,6 +25,14 @@ export default () => {
 
     app.use(errorMiddleware);
 
+    app.use('/isAlive', (_req, res) => {
+        res.status(200).send('alive');
+    });
+
+    app.use('*', (_req, res) => {
+        res.status(404).send('Invalid Route');
+    });
+
     app.listen(port, () => {
         sendLog('info', `listening at http://localhost:${port}`, true);
     });
