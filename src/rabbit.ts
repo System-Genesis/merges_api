@@ -27,7 +27,7 @@ export const sendToLogQueue = (logToSend: logObject): void => {
 
 export const sendToSelectorQueue = (mergedObject: mergedObjectType): void => {
     sendLog('info', 'Sending merged object to selector', false, {
-        identifier: mergedObject.identifiers.identityCard || mergedObject.identifiers.personalNumber || mergedObject.identifiers.goalUser,
+        identifier: mergedObject.identifiers.identityCard || mergedObject.identifiers.personalNumber || mergedObject.identifiers.goalUserID,
     });
     menash.send(rabbit.selectorQueue, mergedObject);
 };

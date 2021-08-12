@@ -10,7 +10,7 @@ type mergedObject = {
     identifiers: {
         personalNumber?: string;
         identityCard?: string;
-        goalUser?: string;
+        goalUserId?: string;
     };
 
     updatedAt: Date;
