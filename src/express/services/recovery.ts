@@ -10,24 +10,24 @@ const sendRecordsToQueue = (mergedObjects: mergedObj[]): void => {
 
 export const all = async (): Promise<number> => {
     const records = await repo.getAll();
-    sendRecordsToQueue(records);
+    if (records) sendRecordsToQueue(records);
     return records.length;
 };
 
 export const bySource = async (source: string): Promise<number> => {
     const records = (await repo.getBySource(source)).filter((obj) => obj[source].length > 0);
-    sendRecordsToQueue(records);
+    if (records) sendRecordsToQueue(records);
     return records.length;
 };
 
 export const byIdentifier = async (identifier: string): Promise<mergedObj> => {
     const entity = await repo.getByIdentifier(identifier);
-    sendRecordsToQueue([entity]);
+    if (entity) sendRecordsToQueue([entity]);
     return entity;
 };
 
 export const updatedAfter = async (dateMS: string): Promise<number> => {
     const records = await repo.getUpdatedAfter(new Date(dateMS));
-    sendRecordsToQueue(records);
+    if (records) sendRecordsToQueue(records);
     return records.length;
 };
