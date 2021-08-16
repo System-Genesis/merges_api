@@ -5,17 +5,17 @@ import { sourcesMap } from '../../config/sources';
 const map: Map<string, string> = new Map<string, string>(sourcesMap);
 
 export const recoveryAll = async (_req: Request, res: Response): Promise<void> => {
-    res.json(await service.all());
+    res.json((await service.all()) || 'Not Found');
 };
 
 export const recoveryByIdentifier = async (req: Request, res: Response): Promise<void> => {
-    res.send(await service.byIdentifier(req.params.identifier));
+    res.send((await service.byIdentifier(req.params.identifier)) || 'Not Found');
 };
 
 export const recoveryBySource = async (req: Request, res: Response): Promise<void> => {
-    res.json(await service.bySource(map.get(req.params.source)!));
+    res.json((await service.bySource(map.get(req.params.source)!)) || 'Not Found');
 };
 
 export const recoveryUpdatedAfter = async (req: Request, res: Response): Promise<void> => {
-    res.json(await service.updatedAfter(req.params.dateMS));
+    res.json((await service.updatedAfter(req.params.dateMS)) || 'Not Found');
 };
