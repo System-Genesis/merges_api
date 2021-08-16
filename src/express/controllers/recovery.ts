@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as service from '../services/recovery';
 import { sourcesMap } from '../../config/sources';
 
-const map = new Map(sourcesMap);
+const map: Map<string, string> = new Map<string, string>(sourcesMap);
 
 export const recoveryAll = async (_req: Request, res: Response): Promise<void> => {
     res.json(await service.all());
