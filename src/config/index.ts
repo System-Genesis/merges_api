@@ -6,7 +6,7 @@ const config = {
         port: env.get('PORT').required().asPortNumber(),
     },
     mongo: {
-        uri: env.get('MONGO_URI').required().asUrlString(),
+        uri: env.get('MONGO_URI').required().asString(),
         collectionName: env.get('COLLECTION_NAME').required().asString(),
     },
     rabbit: {
