@@ -1,5 +1,5 @@
 import * as express from 'express';
-import sendLog from '../logger';
+import logger from 'logger-genesis';
 
 export class ServiceError extends Error {
     public code: number;
@@ -28,10 +28,7 @@ export const errorMiddleware = (error: Error, _req: express.Request, res: expres
         });
     }
 
-    sendLog('error', 'Unknown error', false, {
-        type: error.name,
-        msg: error.message,
-    });
+    logger.logError(false, 'Unknown error', 'SYSTEM', error.message);
 
     next();
 };
