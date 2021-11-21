@@ -1,13 +1,13 @@
 import * as mongoose from 'mongoose';
+import logger from 'logger-genesis';
 import config from '../config';
-import sendLog from '../logger';
 
 const { mongo } = config;
 
 export default async () => {
-    sendLog('info', 'Connecting to Mongo...', true);
+    logger.logInfo(true, 'Connecting to Mongo', 'SYSTEM', 'Connecting to Mongo');
 
     await mongoose.connect(mongo.uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-    sendLog('info', 'Mongo connection established', true);
+    logger.logInfo(false, 'Mongo connection established', 'SYSTEM', 'Mongo connection established');
 };

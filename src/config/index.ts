@@ -19,6 +19,8 @@ const config = {
         selectorQueue: env.get('PRODUCE_QUEUE').required().asString(),
         logQueue: env.get('LOG_QUEUE').required().asString(),
     },
+    systemName: env.get('SYSTEM_NAME').required().asString(),
+    serviceName: env.get('SERVICE_NAME').required().asString(),
 };
 
 export default config;

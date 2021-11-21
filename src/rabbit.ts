@@ -1,24 +1,25 @@
+/* eslint-disable no-console */
 import menash from 'menashmq';
+import logger from 'logger-genesis';
 import config from './config';
 import logObject from './types/log';
 import mergedObjectType from './types/mergedObject';
-import sendLog from './logger';
 
 const { rabbit } = config;
 
 require('dotenv').config();
 
 export default async (): Promise<void> => {
-    sendLog('info', 'Connecting to Rabbit...', true);
+    console.log('Connecting to Rabbit...');
 
     await menash.connect(rabbit.uri, rabbit.retryOptions);
 
-    sendLog('info', 'Rabbit connected', true);
+    console.log('Rabbit connected');
 
     await menash.declareQueue(rabbit.logQueue);
     await menash.declareQueue(rabbit.selectorQueue);
 
-    sendLog('info', 'Rabbit initialized', true);
+    console.log('Rabbit initialized');
 };
 
 export const sendToLogQueue = (logToSend: logObject): void => {
@@ -26,8 +27,6 @@ export const sendToLogQueue = (logToSend: logObject): void => {
 };
 
 export const sendToSelectorQueue = (mergedObject: mergedObjectType): void => {
-    sendLog('info', 'Sending merged object to selector', false, {
-        identifier: mergedObject.identifiers.identityCard || mergedObject.identifiers.personalNumber || mergedObject.identifiers.goalUserId,
-    });
+    logger.logInfo(true, 'Sending object to selector queue', 'APP', JSON.stringify(mergedObject));
     menash.send(rabbit.selectorQueue, mergedObject);
 };
