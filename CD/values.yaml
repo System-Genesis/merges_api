@@ -1,4 +1,4 @@
-name: "mergesAPI"
+name: "merges-api"
 replicaCount: 1
 
 images:
@@ -14,12 +14,12 @@ service:
     port: 3000
 
 volume:
-  -name: mergesAPI-volume
-   mountPath: /usr/src/app/dist/config/
-   secretName: azure-secret 
-   shareName: system-genesis/ 
-   type: azurefile
+  - name: merges-api-volume
+    mountPath: /usr/src/app/dist/config/
+    secretName: azure-secret 
+    shareName: system-genesis/merges-api/
+    type: azurefile
 
 config:
   configmaps: 
-    name: mergesAPI
+    name: merges-api
