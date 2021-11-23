@@ -34,6 +34,6 @@ export default () => {
     });
 
     app.listen(port, () => {
-        loggerGenesis.logInfo(true, `listening at http://localhost:${port}`, 'APP', `listening at http://localhost:${port}`);
+        loggerGenesis.info(true, 'APP', `listening at http://localhost:${port}`, `listening at http://localhost:${port}`);
     });
 };
