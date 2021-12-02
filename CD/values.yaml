@@ -15,9 +15,9 @@ service:
 
 volume:
   - name: merges-api-volume
-    mountPath: /usr/src/app/dist/config/
+    mountPath: /usr/src/app/dist/config
     secretName: azure-secret 
-    shareName: system-genesis/merges-api/
+    shareName: system-genesis/merges-api
     type: azurefile
 
 config:
