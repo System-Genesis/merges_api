@@ -5,11 +5,11 @@ import initializeRabbit from './rabbit';
 import initializeLogger from './logger';
 
 const main = async () => {
-    await initializeMongo();
+    await initializeRabbit();
 
     await initializeLogger();
 
-    await initializeRabbit();
+    await initializeMongo();
 
     initializeExpress();
 };
