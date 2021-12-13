@@ -28,7 +28,7 @@ export const errorMiddleware = (error: Error, _req: express.Request, res: expres
         });
     }
 
-    logger.logError(false, 'Unknown error', 'SYSTEM', error.message);
+    logger.error(false, 'SYSTEM', 'Unknown error', error.message);
 
     next();
 };

@@ -1,7 +1,7 @@
+import loggerGenesis from 'logger-genesis';
 import * as express from 'express';
 import * as helmet from 'helmet';
 import * as logger from 'morgan';
-import loggerGenesis from 'logger-genesis';
 import recoveryRouter from './routes/recovery';
 import getRouter from './routes/get';
 import config from '../config/index';
@@ -34,6 +34,6 @@ export default () => {
     });
 
     app.listen(port, () => {
-        loggerGenesis.logInfo(true, `listening at http://localhost:${port}`, 'APP', `listening at http://localhost:${port}`);
+        loggerGenesis.info(true, 'APP', `listening at http://localhost:${port}`, `listening at http://localhost:${port}`);
     });
 };
