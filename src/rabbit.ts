@@ -16,7 +16,6 @@ export default async (): Promise<void> => {
 
     console.log('Rabbit connected');
 
-    await menash.declareQueue(rabbit.logQueue);
     await menash.declareQueue(rabbit.selectorQueue);
 
     console.log('Rabbit initialized');
