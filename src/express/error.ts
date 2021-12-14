@@ -10,7 +10,7 @@ export class ServiceError extends Error {
     }
 }
 
-export const errorMiddleware = (error: Error, _req: express.Request, res: express.Response, next: express.NextFunction) => {
+export const errorMiddleware = (error: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     if (error.name === 'ValidationError') {
         res.status(400).send({
             type: error.name,
