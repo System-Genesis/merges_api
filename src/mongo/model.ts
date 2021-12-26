@@ -27,8 +27,11 @@ const mergedObject = new mongoose.Schema<mergedObjectType>(
         },
 
         updatedAt: { type: Date, required: true },
+        lock: { type: mongoose.Schema.Types.Number, required: false, auto: false, select: false },
     },
-    { versionKey: false },
+    {
+        versionKey: false,
+    },
 );
 
 const mergedObjModel = mongoose.model(mongo.collectionName, mergedObject);
