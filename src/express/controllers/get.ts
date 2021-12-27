@@ -11,16 +11,27 @@ const map: Map<string, string> = new Map<string, string>(sourcesMap);
 const pipeToRes = (streamProvider: QueryCursor<mergedObj>, res: Response): void => {
     res.set('Content-Type', 'application/json');
 
-    let count = 0;
+    // let count = 0;
+    // streamProvider.pipe(JSONStream.stringify());
+    // streamProvider.on('data', (chunk) => {
+    //     count += 1;
+    //     res.write(JSON.stringify(chunk));
+    // });
+
+    // streamProvider.on('end', () => {
+    //     if (count === 0) res.status(404).json({ message: 'Not Found' });
+    //     res.end();
+    // });
+
+    const arr: mergedObj[] = [];
     streamProvider.pipe(JSONStream.stringify());
     streamProvider.on('data', (chunk) => {
-        count += 1;
-        res.write(JSON.stringify(chunk));
+        arr.push(JSON.parse(JSON.stringify(chunk)));
     });
 
     streamProvider.on('end', () => {
-        if (count === 0) res.status(404).json({ message: 'Not Found' });
-        res.end();
+        if (arr.length === 0) res.status(404).json({ message: 'Not Found' });
+        else res.json(arr);
     });
 };
 
