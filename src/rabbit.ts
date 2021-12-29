@@ -26,6 +26,6 @@ export const sendToLogQueue = (logToSend: logObject): void => {
 };
 
 export const sendToSelectorQueue = (mergedObject: mergedObjectType): void => {
-    logger.info(true, 'APP', 'Sending object to selector queue', JSON.stringify(mergedObject));
+    logger.info(false, 'APP', 'Sending object to selector queue', JSON.stringify(mergedObject));
     menash.send(rabbit.selectorQueue, mergedObject);
 };
