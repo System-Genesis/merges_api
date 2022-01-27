@@ -23,7 +23,7 @@ export const getByIdentifier = async (identifier: string): Promise<mergedObj> =>
 export const getByDIBySource = async (source: string, digitalIdentityUniqueId: string): Promise<mergedObj> => {
     const query = {};
     const fieldToFilter = `${source}.record.userID`;
-    query[fieldToFilter] = digitalIdentityUniqueId;
+    query[fieldToFilter] = { $regex: `^${digitalIdentityUniqueId.toLowerCase()}` };
     return await mergedObjModel.findOne(query).lean();
 };
 
