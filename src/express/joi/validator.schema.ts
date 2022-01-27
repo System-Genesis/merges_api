@@ -14,3 +14,11 @@ export const sourceSchema = Joi.object({
         source: Joi.string().valid(...SOURCES),
     },
 });
+
+// /source/:source/digitalIdentity/:digitalIdentityUniqueId
+export const DIBySourceSchema = Joi.object({
+    params: {
+        source: Joi.string().valid(...SOURCES),
+        digitalIdentityUniqueId: Joi.string(),
+    },
+});

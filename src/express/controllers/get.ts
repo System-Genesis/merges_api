@@ -47,6 +47,12 @@ export const getByIdentifier = async (req: Request, res: Response): Promise<void
     logger.info(false, 'SYSTEM', 'GET request succeeded - Identifier', req.originalUrl, { id: req.params.identifier });
 };
 
+export const getByDIBySource = async (req: Request, res: Response): Promise<void> => {
+    const entity = await service.getByDIBySource(req.params.source, req.params.digitalIdentityUniqueId);
+    res.status(entity ? 200 : 404).json(entity || { message: 'Not Found' });
+    logger.info(false, 'SYSTEM', 'GET request succeeded - DI By Source', req.originalUrl, { id: req.params.identifier });
+};
+
 export const getBySource = async (req: Request, res: Response): Promise<void> => {
     const streamProvider: QueryCursor<mergedObj> = service.getBySource(map.get(req.params.source)!);
     pipeToRes(streamProvider, res);

@@ -20,6 +20,13 @@ export const getByIdentifier = async (identifier: string): Promise<mergedObj> =>
         .lean();
 };
 
+export const getByDIBySource = async (source: string, digitalIdentityUniqueId: string): Promise<mergedObj> => {
+    const query = [];
+    const fieldToFilter = `${source}.record.userID`;
+    query[fieldToFilter] = digitalIdentityUniqueId;
+    return await mergedObjModel.findOne(query).lean();
+};
+
 export const getUpdatedAfter = (date: Date): mongoose.QueryCursor<mergedObj> => {
     return mergedObjModel
         .find({ updatedAt: { $gte: date } })

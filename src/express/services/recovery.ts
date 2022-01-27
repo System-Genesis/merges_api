@@ -33,6 +33,15 @@ export const byIdentifier = async (identifier: string): Promise<mergedObj | null
     return entity;
 };
 
+export const byDIBySource = async (source: string, digitalIdentityUniqueId: string): Promise<mergedObj | null> => {
+    const entity = await repo.getByDIBySource(source, digitalIdentityUniqueId);
+    if (!entity) {
+        return null;
+    }
+    sendToSelectorQueue(entity);
+    return entity;
+};
+
 export const updatedAfter = async (dateMS: string): Promise<number> => {
     const streamProvider: QueryCursor<mergedObj> = repo.getUpdatedAfter(new Date(dateMS));
     return await sendRecordsToQueue(streamProvider);
