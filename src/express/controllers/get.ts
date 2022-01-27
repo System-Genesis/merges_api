@@ -48,7 +48,7 @@ export const getByIdentifier = async (req: Request, res: Response): Promise<void
 };
 
 export const getByDIBySource = async (req: Request, res: Response): Promise<void> => {
-    const entity = await service.getByDIBySource(req.params.source, req.params.digitalIdentityUniqueId);
+    const entity = await service.getByDIBySource(map.get(req.params.source)!, req.params.digitalIdentityUniqueId);
     res.status(entity ? 200 : 404).json(entity || { message: 'Not Found' });
     logger.info(false, 'SYSTEM', 'GET request succeeded - DI By Source', req.originalUrl, { id: req.params.identifier });
 };

@@ -16,16 +16,16 @@ export default async (): Promise<void> => {
 
     console.log('Rabbit connected');
 
-    await menash.declareQueue(rabbit.selectorQueue);
+    await menash.declareQueue(rabbit.selectorQueue, { durable: true });
 
     console.log('Rabbit initialized');
 };
 
 export const sendToLogQueue = (logToSend: logObject): void => {
-    menash.send(rabbit.logQueue, logToSend);
+    menash.send(rabbit.logQueue, logToSend, { persistent: true });
 };
 
 export const sendToSelectorQueue = (mergedObject: mergedObjectType): void => {
     logger.info(false, 'APP', 'Sending object to selector queue', JSON.stringify(mergedObject));
-    menash.send(rabbit.selectorQueue, mergedObject);
+    menash.send(rabbit.selectorQueue, mergedObject, { persistent: true });
 };

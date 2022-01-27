@@ -18,7 +18,7 @@ export const recoveryByIdentifier = async (req: Request, res: Response): Promise
 };
 
 export const recoveryByDIBySource = async (req: Request, res: Response): Promise<void> => {
-    const entity = await service.byDIBySource(req.params.source, req.params.digitalIdentityUniqueId);
+    const entity = await service.byDIBySource(map.get(req.params.source)!, req.params.digitalIdentityUniqueId);
     res.status(entity ? 200 : 404).json(entity || { message: 'Not Found' });
     logger.info(false, 'SYSTEM', 'POST request succeeded - DI By Source', req.originalUrl, { id: req.params.identifier });
 };
