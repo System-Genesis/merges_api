@@ -5,7 +5,7 @@ import config from '../config';
 const { mongo } = config;
 
 export default async () => {
-    logger.info(true, 'SYSTEM', 'Connecting to Mongo', 'Connecting to Mongo');
+    logger.info(false, 'SYSTEM', 'Connecting to Mongo', 'Connecting to Mongo');
 
     await mongoose.connect(mongo.uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
