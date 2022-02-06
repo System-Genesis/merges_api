@@ -13,7 +13,6 @@ jest.mock('../src/logger', () => {
 jest.mock('../src/rabbit', () => {
     return {
         sendToSelectorQueue: jest.fn(),
-        sendToLogQueue: jest.fn(),
         default: jest.fn(),
     };
 });

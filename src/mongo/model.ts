@@ -7,6 +7,7 @@ import mergedObjectType from '../types/mergedObject';
 
 const { mongo } = config;
 
+// Mongoose schema of the merged object
 const mergedObject = new mongoose.Schema<mergedObjectType>(
     {
         _id: { type: mongoose.Schema.Types.ObjectId, required: false, auto: true, select: false },

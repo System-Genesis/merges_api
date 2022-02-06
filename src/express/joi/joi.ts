@@ -19,6 +19,12 @@ const normalizeRequest = (req: any, value: any) => {
     req.params = value.params;
 };
 
+/**
+ * Validate the request by the given valid schema
+ * @param { Joi.ObjectSchema<any> } schema - The valid schema
+ * @param { Joi.ValidationOptions } options - Options
+ * @returns - if not valid throws error.
+ */
 const validateRequest = (schema: Joi.ObjectSchema<any>, options: Joi.ValidationOptions = defaultValidationOptions) => {
     const validator = async (req: Request) => {
         const { error, value } = schema.unknown().validate(req, options);

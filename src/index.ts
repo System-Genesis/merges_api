@@ -4,6 +4,10 @@ import initializeExpress from './express/app';
 import initializeRabbit from './rabbit';
 import initializeLogger from './logger';
 
+/**
+ * The main function.
+ * Calls all the initialization functions.
+ */
 const main = async () => {
     await initializeRabbit();
 

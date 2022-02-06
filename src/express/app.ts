@@ -11,6 +11,9 @@ require('dotenv').config();
 
 const { port } = config.server || 6060;
 
+/**
+ * Initializing the express server
+ */
 export default () => {
     const app = express();
 

@@ -4,6 +4,9 @@ import config from '../config';
 
 const { mongo } = config;
 
+/**
+ * Connect to mongo
+ */
 export default async () => {
     logger.info(false, 'SYSTEM', 'Connecting to Mongo', 'Connecting to Mongo');
 

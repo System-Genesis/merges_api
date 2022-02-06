@@ -2,13 +2,15 @@
 import menash from 'menashmq';
 import logger from 'logger-genesis';
 import config from './config';
-import logObject from './types/log';
 import mergedObjectType from './types/mergedObject';
 
 const { rabbit } = config;
 
 require('dotenv').config();
 
+/**
+ * Connects to RabbitMQ and declaring the queues
+ */
 export default async (): Promise<void> => {
     console.log('Connecting to Rabbit...');
 
@@ -21,10 +23,10 @@ export default async (): Promise<void> => {
     console.log('Rabbit initialized');
 };
 
-export const sendToLogQueue = (logToSend: logObject): void => {
-    menash.send(rabbit.logQueue, logToSend, { persistent: true });
-};
-
+/**
+ * Sends the object to the selector queue.
+ * @param { mergedObjectType } mergedObject - The object pulled from the DB.
+ */
 export const sendToSelectorQueue = (mergedObject: mergedObjectType): void => {
     logger.info(
         false,
