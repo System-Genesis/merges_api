@@ -15,3 +15,9 @@ export const DIBySourceSchema = Joi.object({
         digitalIdentityUniqueId: Joi.string(),
     },
 });
+
+export const dateSchema = Joi.object({
+    params: {
+        dateMS: Joi.date(),
+    },
+});

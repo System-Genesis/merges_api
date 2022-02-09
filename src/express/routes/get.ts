@@ -2,7 +2,7 @@ import * as express from 'express';
 import { wrapController } from '../wraps';
 import * as controller from '../controllers/get';
 import validateRequest from '../joi/joi';
-import { sourceSchema, DIBySourceSchema } from '../joi/validator.schema';
+import { dateSchema, sourceSchema, DIBySourceSchema } from '../joi/validator.schema';
 
 const router = express.Router();
 
@@ -14,6 +14,6 @@ router.get('/source/:source', validateRequest(sourceSchema), wrapController(cont
 
 router.get('/source/:source/digitalIdentity/:digitalIdentityUniqueId', validateRequest(DIBySourceSchema), wrapController(controller.getByDIBySource));
 
-router.get('/date/:dateMS', wrapController(controller.getUpdatedAfter));
+router.get('/date/:dateMS', validateRequest(dateSchema), wrapController(controller.getUpdatedAfter));
 
 export default router;

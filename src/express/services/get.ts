@@ -11,4 +11,4 @@ export const getByIdentifier = async (identifier: string): Promise<mergedObj> =>
 export const getByDIBySource = async (source: string, digitalIdentityUniqueId: string): Promise<mergedObj> =>
     await repo.getByDIBySource(source, digitalIdentityUniqueId);
 
-export const getUpdatedAfter = (dateMS: string): QueryCursor<mergedObj> => repo.getUpdatedAfter(new Date(parseInt(dateMS, 10)));
+export const getUpdatedAfter = (dateMS: string): QueryCursor<mergedObj> => repo.getUpdatedAfter(new Date(dateMS));
