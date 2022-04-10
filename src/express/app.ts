@@ -6,6 +6,7 @@ import recoveryRouter from './routes/recovery';
 import getRouter from './routes/get';
 import config from '../config/index';
 import { errorMiddleware } from './error';
+import checkConnection from './checkConnections';
 
 require('dotenv').config();
 
@@ -29,7 +30,7 @@ export default () => {
     app.use(errorMiddleware);
 
     app.use('/isAlive', (_req, res) => {
-        res.status(200).send('alive');
+        res.send(checkConnection() ? 'OK' : 'Not OK');
     });
 
     app.use('*', (_req, res) => {
