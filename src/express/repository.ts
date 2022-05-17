@@ -29,7 +29,12 @@ export const getBySource = (source: string): mongoose.QueryCursor<mergedObj> => 
 export const getByIdentifier = async (identifier: string): Promise<mergedObj> => {
     return await mergedObjModel
         .findOne({
-            $or: [{ 'identifiers.identityCard': identifier }, { 'identifiers.personalNumber': identifier }, { 'identifiers.goalUserId': identifier }],
+            $or: [
+                { 'identifiers.identityCard': identifier },
+                { 'identifiers.personalNumber': identifier },
+                { 'identifiers.goalUserId': identifier },
+                { 'identifiers.employeeId': identifier },
+            ],
         })
         .lean();
 };
